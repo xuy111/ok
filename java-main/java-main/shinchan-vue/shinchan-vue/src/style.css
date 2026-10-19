@@ -1,0 +1,31 @@
+:root {
+  --red: #f24e1e;     /* 小新红上衣 */
+  --yellow: #ffd23f;  /* 小新黄书包 */
+  --blue: #4aa3ff;    /* 广志蓝 */
+  --pink: #ff9ec4;    /* 美冴粉 */
+  --skin: #ffe0b3;
+  --ink: #2b2b2b;
+  --cream: #fff7e6;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+
+body {
+  font-family: "YouYuan", "幼圆", "Comic Sans MS", "STKaiti", "KaiTi", cursive, sans-serif;
+  background: var(--cream) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><circle cx='10' cy='10' r='2' fill='%23ffd23f'/><circle cx='30' cy='28' r='2' fill='%234aa3ff'/></svg>");
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* 手绘蜡笔描边盒子 */
+.crayon {
+  border: 3px solid var(--ink);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  background: #fff;
+  box-shadow: 4px 4px 0 rgba(43, 43, 43, .15);
+}
