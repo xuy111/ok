@@ -1,0 +1,50 @@
+2026-11-02T11:44:17.579+08:00  INFO 8560 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 8560 (C:\Users\Administrator\Desktop\ok-main\springBootTest\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\ok-main)
+2026-11-02T11:44:17.593+08:00 DEBUG 8560 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : Running with Spring Boot v3.4.5, Spring v6.2.6
+2026-11-02T11:44:17.594+08:00  INFO 8560 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : The following 1 profile is active: "dev"
+2026-11-02T11:44:20.015+08:00  INFO 8560 --- [springBootTest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-11-02T11:44:20.046+08:00  INFO 8560 --- [springBootTest] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-02T11:44:20.046+08:00  INFO 8560 --- [springBootTest] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2026-11-02T11:44:20.122+08:00  INFO 8560 --- [springBootTest] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2026-11-02T11:44:20.123+08:00  INFO 8560 --- [springBootTest] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2430 ms
+2026-11-02T11:44:21.052+08:00  INFO 8560 --- [springBootTest] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-11-02T11:44:21.861+08:00  INFO 8560 --- [springBootTest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/api'
+2026-11-02T11:44:21.871+08:00  INFO 8560 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : Started SpringBootTestApplication in 5.274 seconds (process running for 5.993)
+2026-11-02T11:44:54.659+08:00  INFO 4484 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 4484 (C:\Users\Administrator\Desktop\ok-main\springBootTest\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\ok-main)
+2026-11-02T11:44:54.662+08:00 DEBUG 4484 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : Running with Spring Boot v3.4.5, Spring v6.2.6
+2026-11-02T11:44:54.663+08:00  INFO 4484 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : The following 1 profile is active: "dev"
+2026-11-02T11:44:55.807+08:00  INFO 4484 --- [springBootTest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-11-02T11:44:55.819+08:00  INFO 4484 --- [springBootTest] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-02T11:44:55.819+08:00  INFO 4484 --- [springBootTest] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2026-11-02T11:44:55.845+08:00  INFO 4484 --- [springBootTest] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2026-11-02T11:44:55.846+08:00  INFO 4484 --- [springBootTest] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1133 ms
+2026-11-02T11:44:56.239+08:00  INFO 4484 --- [springBootTest] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-11-02T11:44:56.574+08:00  INFO 4484 --- [springBootTest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/api'
+2026-11-02T11:44:56.589+08:00  INFO 4484 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : Started SpringBootTestApplication in 2.422 seconds (process running for 2.809)
+2026-11-02T11:45:10.259+08:00  INFO 7164 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 7164 (C:\Users\Administrator\Desktop\ok-main\springBootTest\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\ok-main)
+2026-11-02T11:45:10.263+08:00 DEBUG 7164 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : Running with Spring Boot v3.4.5, Spring v6.2.6
+2026-11-02T11:45:10.264+08:00  INFO 7164 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : The following 1 profile is active: "dev"
+2026-11-02T11:45:11.442+08:00  INFO 7164 --- [springBootTest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-11-02T11:45:11.456+08:00  INFO 7164 --- [springBootTest] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-02T11:45:11.457+08:00  INFO 7164 --- [springBootTest] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2026-11-02T11:45:11.486+08:00  INFO 7164 --- [springBootTest] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2026-11-02T11:45:11.486+08:00  INFO 7164 --- [springBootTest] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1175 ms
+2026-11-02T11:45:12.026+08:00  INFO 7164 --- [springBootTest] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-11-02T11:45:12.397+08:00  INFO 7164 --- [springBootTest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/api'
+2026-11-02T11:45:12.406+08:00  INFO 7164 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : Started SpringBootTestApplication in 2.634 seconds (process running for 3.035)
+2026-11-02T11:45:12.536+08:00  INFO 7164 --- [springBootTest] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-02T11:45:12.537+08:00  INFO 7164 --- [springBootTest] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-02T11:45:12.538+08:00  INFO 7164 --- [springBootTest] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-11-02T11:46:38.428+08:00  INFO 7164 --- [springBootTest] [http-nio-8081-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-02T11:46:38.818+08:00  INFO 7164 --- [springBootTest] [http-nio-8081-exec-6] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@63ba5017
+2026-11-02T11:46:38.822+08:00  INFO 7164 --- [springBootTest] [http-nio-8081-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-02T11:50:12.177+08:00  INFO 11804 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 11804 (C:\Users\Administrator\Desktop\ok-main\springBootTest\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\ok-main)
+2026-11-02T11:50:12.182+08:00 DEBUG 11804 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : Running with Spring Boot v3.4.5, Spring v6.2.6
+2026-11-02T11:50:12.185+08:00  INFO 11804 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : The following 1 profile is active: "dev"
+2026-11-02T11:50:14.459+08:00  INFO 11804 --- [springBootTest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-11-02T11:50:14.495+08:00  INFO 11804 --- [springBootTest] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-02T11:50:14.495+08:00  INFO 11804 --- [springBootTest] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2026-11-02T11:50:14.562+08:00  INFO 11804 --- [springBootTest] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2026-11-02T11:50:14.562+08:00  INFO 11804 --- [springBootTest] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2285 ms
+2026-11-02T11:50:15.438+08:00  INFO 11804 --- [springBootTest] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-11-02T11:50:15.978+08:00  INFO 11804 --- [springBootTest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/api'
+2026-11-02T11:50:15.989+08:00  INFO 11804 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : Started SpringBootTestApplication in 4.716 seconds (process running for 5.451)
