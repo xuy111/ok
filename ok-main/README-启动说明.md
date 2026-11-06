@@ -21,14 +21,32 @@
 
 ## 接口约定（前端 `src/api.js` 已对接）
 
+返回结构统一为 `{code, msg, data}`：`200` 成功、`400` 业务错误、`401` 登录过期（前端自动清除缓存并提示重新登录）。
+
+### 用户接口
+
 | 接口 | 方法 | 说明 |
 |------|------|------|
-| `/api/user/login` | POST | 登录，body `{user, pass}`，返回 `{code, msg, data:{token, username, crew}}` |
+| `/api/user/login` | POST | 登录，body `{user, pass}`，返回 `{data:{token, username, crew}}` |
 | `/api/user/register` | POST | 注册，body `{user, pass, crew}` |
-| `/api/user/info` | GET | 需要 `Authorization: Bearer <token>`，返回 `{data:{username, crew}}` |
+| `/api/user/info` | GET | 需认证，返回 `{data:{username, crew}}` |
 | `/api/user/ping` | GET | 健康检查 |
 
-返回结构统一为 `{code, msg, data}`：`200` 成功、`400` 业务错误、`401` 登录过期（前端自动清除缓存并提示重新登录）。
+### 首页接口（除 ping/login 外均需 `Authorization: Bearer <token>`）
+
+| 接口 | 方法 | 说明 |
+|------|------|------|
+| `/api/home/search` | GET | 分级分类搜索（分页），参数 `keyword`/`category`/`subcategory`/`page`/`size`，返回 `{data:{total, page, size, list}}` |
+| `/api/home/recommend?limit=8` | GET | 首页热门推荐（按热度排序） |
+| `/api/home/categories` | GET | 分级分类目录树 |
+| `/api/home/crew?crew=straw` | GET | 按海贼团查船员（crew 为空返回全部） |
+| `/api/home/island?region=东海` | GET | 按海域查岛屿（region 为空返回全部） |
+| `/api/home/bounty?crew=straw` | GET | 悬赏榜（按数值降序） |
+| `/api/home/timeline` | GET | 航海日志时间线 |
+| `/api/home/favorite?contentId=1` | POST | 收藏 |
+| `/api/home/unfavorite?contentId=1` | POST | 取消收藏 |
+| `/api/home/favorites` | GET | 我的收藏列表 |
+| `/api/home/favorite/check?contentId=1` | GET | 是否已收藏 |
 
 ## 启动步骤
 
@@ -77,14 +95,41 @@ npm run dev
 src/main/java/com/fenglin/springboottest/
 ├── SpringBootTestApplication.java   # 启动类（@MapperScan 扫描 mapper 包）
 ├── common/Result.java               # 统一返回 {code, msg, data}
-├── config/WebConfig.java            # CORS 跨域配置
-├── controller/UserController.java   # 登录/注册/信息接口
-├── entity/User.java                 # 用户实体（@TableName("user")）
-├── mapper/UserMapper.java           # MyBatis-Plus BaseMapper
-├── service/UserService.java         # 业务接口
-├── service/impl/UserServiceImpl.java# 业务实现（注册查重/登录校验/SHA-256）
+├── config/
+│   ├── WebConfig.java               # CORS 跨域配置
+│   └── MybatisPlusConfig.java       # MyBatis-Plus 分页插件
+├── controller/
+│   ├── UserController.java          # 登录/注册/信息接口
+│   └── HomeController.java          # 首页搜索/船员/岛屿/悬赏/时间线/收藏接口
+├── entity/
+│   ├── User.java                    # 用户实体（@TableName("user")）
+│   ├── Content.java                 # 航海图鉴实体（@TableName("content")）
+│   ├── Timeline.java                # 时间线实体（@TableName("timeline")）
+│   └── Favorite.java                # 收藏实体（@TableName("favorite")）
+├── mapper/
+│   ├── UserMapper.java              # MyBatis-Plus BaseMapper
+│   ├── ContentMapper.java
+│   ├── TimelineMapper.java
+│   └── FavoriteMapper.java
+├── service/
+│   ├── UserService.java             # 用户业务接口
+│   └── HomeService.java             # 首页业务接口
+├── service/impl/
+│   ├── UserServiceImpl.java         # 注册查重/登录校验/SHA-256
+│   └── HomeServiceImpl.java         # 搜索/推荐/船员/岛屿/悬赏/时间线/收藏
 └── util/JwtUtil.java                # JWT 生成与校验
 ```
+
+## 数据库表结构
+
+| 表 | 说明 |
+|------|------|
+| `user` | 船员名册（登录账号） |
+| `content` | 航海图鉴（首页搜索/展示/船员/岛屿/悬赏数据源，含分级分类字段） |
+| `timeline` | 航海日志（剧情时间线） |
+| `favorite` | 用户收藏（我的航海日志） |
+
+> **完整初始化脚本为 `sql/onepiece.sql`**（含 4 张表 + 全部种子数据：5 个账号、99 条图鉴、15 条时间线）。其余 `sql/onepiece_*.sql` 为开发过程中的增量脚本，仅供追溯，实际部署只需执行 `onepiece.sql`。
 
 ## 常见问题
 

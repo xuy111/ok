@@ -3,6 +3,7 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import jollyRoger from './assets/jolly-roger.jpg'
 import luffyBg from './assets/luffy-bg.gif'
 import Register from './Register.vue'
+import Home from './Home.vue'
 import { api } from './api'
 
 const view = ref('login')
@@ -94,6 +95,7 @@ async function checkSession() {
   try {
     const data = await api.info()
     loggedUser.value = data.data.username
+    view.value = 'home'
   } catch (e) {
     /* token 失效或后端未启动时忽略，交由 auth-expired 事件处理 */
   }
@@ -101,6 +103,7 @@ async function checkSession() {
 
 function onAuthExpired() {
   loggedUser.value = ''
+  view.value = 'login'
   toast.value = '⚓ 登录已过期，请重新上船！'
   toastShow.value = true
 }
@@ -117,6 +120,7 @@ function logout() {
   localStorage.removeItem('crew_token')
   localStorage.removeItem('crew_user')
   loggedUser.value = ''
+  view.value = 'login'
   toast.value = '⚓ 已下船，期待下次启航！'
   toastShow.value = true
 }
@@ -139,6 +143,8 @@ async function onSubmit() {
       loggedUser.value = name
     }
     toast.value = '⚓ ' + name + '，' + (r.msg || '伟大航道已为你敞开！')
+    // 登录成功，跳转首页
+    view.value = 'home'
   } catch (err) {
     blip(200)
     toast.value = '🌊 ' + err.message
@@ -244,7 +250,9 @@ async function onSubmit() {
     </div>
   </div>
 
-  <Register v-else @back="view = 'login'" />
+  <Register v-else-if="view === 'register'" @back="view = 'login'" />
+
+  <Home v-else-if="view === 'home'" @logout="logout" />
 </template>
 
 <!-- 全局基础样式 -->

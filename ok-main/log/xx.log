@@ -48,3 +48,20 @@
 2026-11-02T11:50:15.438+08:00  INFO 11804 --- [springBootTest] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
 2026-11-02T11:50:15.978+08:00  INFO 11804 --- [springBootTest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/api'
 2026-11-02T11:50:15.989+08:00  INFO 11804 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : Started SpringBootTestApplication in 4.716 seconds (process running for 5.451)
+2026-11-06T15:33:45.408+08:00  INFO 8296 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 8296 (D:\workSpace\ok\ok-main\springBootTest\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in D:\workSpace\ok\ok-main)
+2026-11-06T15:33:45.411+08:00 DEBUG 8296 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : Running with Spring Boot v3.4.5, Spring v6.2.6
+2026-11-06T15:33:45.412+08:00  INFO 8296 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : The following 1 profile is active: "dev"
+2026-11-06T15:33:46.410+08:00  INFO 8296 --- [springBootTest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-11-06T15:33:46.424+08:00  INFO 8296 --- [springBootTest] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-06T15:33:46.424+08:00  INFO 8296 --- [springBootTest] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2026-11-06T15:33:46.448+08:00  INFO 8296 --- [springBootTest] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2026-11-06T15:33:46.449+08:00  INFO 8296 --- [springBootTest] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 988 ms
+2026-11-06T15:33:46.814+08:00  INFO 8296 --- [springBootTest] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-11-06T15:33:47.140+08:00  INFO 8296 --- [springBootTest] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/api'
+2026-11-06T15:33:47.149+08:00  INFO 8296 --- [springBootTest] [main] c.f.s.SpringBootTestApplication          : Started SpringBootTestApplication in 2.21 seconds (process running for 2.596)
+2026-11-06T15:34:29.688+08:00  INFO 8296 --- [springBootTest] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-06T15:34:29.689+08:00  INFO 8296 --- [springBootTest] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-06T15:34:29.690+08:00  INFO 8296 --- [springBootTest] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-11-06T15:34:29.893+08:00  INFO 8296 --- [springBootTest] [http-nio-8081-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-06T15:34:30.065+08:00  INFO 8296 --- [springBootTest] [http-nio-8081-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@42824c5
+2026-11-06T15:34:30.067+08:00  INFO 8296 --- [springBootTest] [http-nio-8081-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.

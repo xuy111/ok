@@ -46,5 +46,35 @@ async function request(path, { method = 'GET', body } = {}) {
 export const api = {
   login: (user, pass) => request('/user/login', { method: 'POST', body: { user, pass } }),
   register: (payload) => request('/user/register', { method: 'POST', body: payload }),
-  info: () => request('/user/info')
+  info: () => request('/user/info'),
+
+  /* ---------- 首页相关接口 ---------- */
+  // 分级分类搜索（分页）：keyword 关键词，category 大类，subcategory 子类，page/size 分页
+  search: (params = {}) => {
+    const qs = new URLSearchParams()
+    if (params.keyword) qs.set('keyword', params.keyword)
+    if (params.category) qs.set('category', params.category)
+    if (params.subcategory) qs.set('subcategory', params.subcategory)
+    if (params.page) qs.set('page', params.page)
+    if (params.size) qs.set('size', params.size)
+    return request('/home/search?' + qs.toString())
+  },
+  // 首页推荐/热门内容
+  recommend: (limit = 8) => request('/home/recommend?limit=' + limit),
+  // 分级分类目录
+  categories: () => request('/home/categories'),
+  // 按海贼团查询船员（crew 为空返回全部）
+  crew: (crew = '') => request('/home/crew' + (crew ? '?crew=' + encodeURIComponent(crew) : '')),
+  // 按海域查询岛屿（region 为空返回全部）
+  island: (region = '') => request('/home/island' + (region ? '?region=' + encodeURIComponent(region) : '')),
+  // 悬赏榜（crew 为空返回全部）
+  bounty: (crew = '') => request('/home/bounty' + (crew ? '?crew=' + encodeURIComponent(crew) : '')),
+  // 航海日志时间线
+  timeline: () => request('/home/timeline'),
+
+  /* ---------- 收藏（我的航海日志） ---------- */
+  favorite: (contentId) => request('/home/favorite?contentId=' + contentId, { method: 'POST' }),
+  unfavorite: (contentId) => request('/home/unfavorite?contentId=' + contentId, { method: 'POST' }),
+  favorites: () => request('/home/favorites'),
+  favoriteCheck: (contentId) => request('/home/favorite/check?contentId=' + contentId)
 }
