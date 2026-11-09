@@ -96,8 +96,8 @@ src/main/java/com/fenglin/springboottest/
 ├── SpringBootTestApplication.java   # 启动类（@MapperScan 扫描 mapper 包）
 ├── common/Result.java               # 统一返回 {code, msg, data}
 ├── config/
-│   ├── WebConfig.java               # CORS 跨域配置
-│   └── MybatisPlusConfig.java       # MyBatis-Plus 分页插件
+│   └── WebConfig.java               # CORS 跨域配置（全局放行）
+│                                    # 注：图鉴搜索用内存分页，不依赖分页插件
 ├── controller/
 │   ├── UserController.java          # 登录/注册/信息接口
 │   └── HomeController.java          # 首页搜索/船员/岛屿/悬赏/时间线/收藏接口
@@ -113,10 +113,9 @@ src/main/java/com/fenglin/springboottest/
 │   └── FavoriteMapper.java
 ├── service/
 │   ├── UserService.java             # 用户业务接口
-│   └── HomeService.java             # 首页业务接口
+│   └── HomeService.java             # 首页业务实现（搜索/分类/推荐/船员/岛屿/悬赏/时间线/收藏）
 ├── service/impl/
-│   ├── UserServiceImpl.java         # 注册查重/登录校验/SHA-256
-│   └── HomeServiceImpl.java         # 搜索/推荐/船员/岛屿/悬赏/时间线/收藏
+│   └── UserServiceImpl.java         # 注册查重/登录校验/SHA-256
 └── util/JwtUtil.java                # JWT 生成与校验
 ```
 
@@ -136,3 +135,6 @@ src/main/java/com/fenglin/springboottest/
 1. **前端提示"无法连接后端"**：确认后端已在 8081 端口启动（访问 `http://localhost:8081/api/user/ping` 应返回 JSON）。
 2. **数据库连接失败**：确认 MySQL 服务已启动、`onepiece` 库已初始化、账号密码为 `root/123456`（可在 `application.properties` 修改）。
 3. **端口冲突**：8081 被占用时修改 `application.properties` 的 `server.port`，同时同步修改前端 `src/api.js` 的 `BASE` 地址。
+4. **改了后端代码却不生效**：`启动项目.bat` 只在 jar 不存在时才构建。修改 `springBootTest/src` 下的 Java 代码后，需先删除 `springBootTest/target/springBootTest-0.0.1-SNAPSHOT.jar`，或手动执行 `mvn -DskipTests clean package` 再启动，否则一直运行旧 jar。
+5. **首页接口返回 401**：`/home/*` 全部需要 JWT（有效期 24 小时）。请先登录；token 过期时前端会自动清除本地缓存并退回登录页。
+6. **首页数据为空**：确认 `onepiece` 库已用 `sql/onepiece.sql` 初始化（`content` 约 99 条、`timeline` 15 条）。启动脚本只在数据库不存在时导入，旧库请手动补导。

@@ -209,3 +209,20 @@ CREATE TABLE `favorite` (
     KEY `idx_username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户收藏(我的航海日志)';
 
+-- ------------------------------------------------------------
+-- 后台管理员表（后台管理系统独立鉴权）
+-- ------------------------------------------------------------
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE `admin` (
+    `id`          BIGINT      NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `username`    VARCHAR(50) NOT NULL COMMENT '管理员账号',
+    `password`    VARCHAR(64) NOT NULL COMMENT '密码(SHA-256摘要)',
+    `create_time` DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uk_admin_username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='后台管理员';
+
+-- 内置管理员：admin / admin123（SHA-256 摘要存储）
+INSERT INTO `admin` (`username`, `password`) VALUES
+('admin','240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9');
+

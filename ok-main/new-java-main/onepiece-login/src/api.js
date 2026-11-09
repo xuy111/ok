@@ -4,14 +4,20 @@
 // - 统一处理 { code, msg, data } 返回结构与 401 过期
 const BASE = 'http://localhost:8081/api'
 
-function getToken() {
-  return localStorage.getItem('crew_token') || ''
+function getToken(tokenKey) {
+  return localStorage.getItem(tokenKey || 'crew_token') || ''
 }
 
-async function request(path, { method = 'GET', body } = {}) {
+/**
+ * @param path 请求路径
+ * @param opts { method, body, tokenKey, authExpire }
+ *   - tokenKey: 使用的 token 存储键，后台管理用 'admin_token'
+ *   - authExpire: 401 时是否触发前台登录过期事件，后台管理用 false
+ */
+async function request(path, { method = 'GET', body, tokenKey, authExpire = true } = {}) {
   const headers = {}
   if (body) headers['Content-Type'] = 'application/json'
-  const token = getToken()
+  const token = getToken(tokenKey)
   if (token) headers['Authorization'] = 'Bearer ' + token
 
   let res
@@ -33,7 +39,7 @@ async function request(path, { method = 'GET', body } = {}) {
   }
 
   if (!res.ok || !data || data.code !== 200) {
-    if (data && data.code === 401) {
+    if (data && data.code === 401 && authExpire) {
       localStorage.removeItem('crew_token')
       localStorage.removeItem('crew_user')
       window.dispatchEvent(new CustomEvent('auth-expired'))
@@ -76,5 +82,14 @@ export const api = {
   favorite: (contentId) => request('/home/favorite?contentId=' + contentId, { method: 'POST' }),
   unfavorite: (contentId) => request('/home/unfavorite?contentId=' + contentId, { method: 'POST' }),
   favorites: () => request('/home/favorites'),
-  favoriteCheck: (contentId) => request('/home/favorite/check?contentId=' + contentId)
+  favoriteCheck: (contentId) => request('/home/favorite/check?contentId=' + contentId),
+
+  /* ---------- 后台管理（独立管理员鉴权） ---------- */
+  adminLogin: (username, password) => request('/admin/login', { method: 'POST', body: { username, password }, tokenKey: 'admin_token', authExpire: false }),
+  adminContentList: (keyword = '') => request('/admin/content/list' + (keyword ? '?keyword=' + encodeURIComponent(keyword) : ''), { tokenKey: 'admin_token', authExpire: false }),
+  adminContentSave: (payload) => request('/admin/content/save', { method: 'POST', body: payload, tokenKey: 'admin_token', authExpire: false }),
+  adminContentDelete: (id) => request('/admin/content/' + id, { method: 'DELETE', tokenKey: 'admin_token', authExpire: false }),
+  adminTimelineList: () => request('/admin/timeline/list', { tokenKey: 'admin_token', authExpire: false }),
+  adminTimelineSave: (payload) => request('/admin/timeline/save', { method: 'POST', body: payload, tokenKey: 'admin_token', authExpire: false }),
+  adminTimelineDelete: (id) => request('/admin/timeline/' + id, { method: 'DELETE', tokenKey: 'admin_token', authExpire: false })
 }

@@ -4,6 +4,8 @@ import jollyRoger from './assets/jolly-roger.jpg'
 import luffyBg from './assets/luffy-bg.gif'
 import Register from './Register.vue'
 import Home from './Home.vue'
+import AdminLogin from './AdminLogin.vue'
+import Admin from './Admin.vue'
 import { api } from './api'
 
 const view = ref('login')
@@ -123,6 +125,12 @@ function logout() {
   view.value = 'login'
   toast.value = '⚓ 已下船，期待下次启航！'
   toastShow.value = true
+}
+
+function adminLogout() {
+  localStorage.removeItem('admin_token')
+  localStorage.removeItem('admin_user')
+  view.value = 'adminLogin'
 }
 
 function doLogin(name, pwd) {
@@ -252,7 +260,11 @@ async function onSubmit() {
 
   <Register v-else-if="view === 'register'" @back="view = 'login'" />
 
-  <Home v-else-if="view === 'home'" @logout="logout" />
+  <Home v-else-if="view === 'home'" @logout="logout" @goto-admin="view = 'adminLogin'" />
+
+  <AdminLogin v-else-if="view === 'adminLogin'" @back="view = 'home'" @success="view = 'admin'" />
+
+  <Admin v-else-if="view === 'admin'" @logout="adminLogout" />
 </template>
 
 <!-- 全局基础样式 -->
