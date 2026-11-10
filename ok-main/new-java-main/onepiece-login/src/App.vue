@@ -3,6 +3,7 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import jollyRoger from './assets/jolly-roger.jpg'
 import luffyBg from './assets/luffy-bg.gif'
 import Register from './Register.vue'
+import WantedPoster from './WantedPoster.vue'
 import Home from './Home.vue'
 import AdminLogin from './AdminLogin.vue'
 import Admin from './Admin.vue'
@@ -246,7 +247,7 @@ async function onSubmit() {
             <button class="btn" type="submit" :disabled="loading">{{ loading ? '启航中…' : '出 发 ！' }}</button>
           </form>
           <div class="foot">
-            <a href="#">忘记口令？</a>
+            <a href="#" @click.prevent="view = 'wanted'">☠️ 悬赏令生成器</a>
             <a href="#" @click.prevent="view = 'register'">招募新船员</a>
           </div>
         </div>
@@ -259,6 +260,8 @@ async function onSubmit() {
   </div>
 
   <Register v-else-if="view === 'register'" @back="view = 'login'" />
+
+  <WantedPoster v-else-if="view === 'wanted'" @back="view = 'login'" />
 
   <Home v-else-if="view === 'home'" @logout="logout" @goto-admin="view = 'adminLogin'" />
 

@@ -29,7 +29,7 @@ for /f "tokens=5" %%a in ('netstat -ano ^| findstr /r /c:":5173 .*LISTENING"') d
 if "%FOUND%"=="0" (
     echo 未发现运行中的前后端服务。
 ) else (
-    echo 停止完成。MySQL 服务保持运行不受影响。
+    echo 停止完成。数据库保持运行；如需关闭请双击 停止数据库.bat。
 )
 echo.
 pause
