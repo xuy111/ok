@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>斗破苍穹 · 登录</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --gold:#d4af37; --gold2:#f5d76e; --flame:#e2542a; --flame2:#ff8c42;
+    --ink:#0c0a09; --ink2:#171310; --line:rgba(212,175,55,.35);
+  }
+  html,body{ height:100%; font-family:"Microsoft YaHei","PingFang SC",serif; color:#e8dcc0; }
+  body{
+    background:
+      radial-gradient(circle at 50% 18%, rgba(226,84,42,.28), transparent 42%),
+      radial-gradient(circle at 50% 120%, rgba(212,175,55,.18), transparent 50%),
+      linear-gradient(160deg,#0c0a09 0%,#171310 45%,#0c0a09 100%);
+    display:flex; align-items:center; justify-content:center; min-height:100vh; overflow:hidden;
+    position:relative;
+  }
+  /* 火焰粒子背景 */
+  .embers{ position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+  .ember{ position:absolute; bottom:-20px; width:3px; height:3px; border-radius:50%;
+    background:var(--flame2); box-shadow:0 0 8px 2px var(--flame); opacity:.7;
+    animation:rise linear infinite; }
+  @keyframes rise{ 0%{ transform:translateY(0) scale(1); opacity:.8 } 100%{ transform:translateY(-110vh) scale(.2); opacity:0 } }
+  /* 顶部装饰 */
+  .brand{ position:absolute; top:34px; text-align:center; width:100%; }
+  .brand h1{ font-size:30px; letter-spacing:12px; color:var(--gold2);
+    text-shadow:0 0 18px rgba(212,175,55,.55); font-weight:700; }
+  .brand p{ margin-top:8px; font-size:12px; letter-spacing:6px; color:#a8926b; }
+  .wrap{ position:relative; z-index:2; width:400px; max-width:92vw; }
+  .card{
+    background:linear-gradient(145deg, rgba(28,22,18,.94), rgba(16,13,11,.96));
+    border:1px solid var(--line); border-radius:14px; padding:40px 36px 34px;
+    box-shadow:0 0 0 1px rgba(0,0,0,.6), 0 18px 60px rgba(0,0,0,.7), inset 0 0 40px rgba(226,84,42,.05);
+    position:relative;
+  }
+  .card::before,.card::after{ content:""; position:absolute; width:26px; height:26px; border:2px solid var(--gold); }
+  .card::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; border-radius:14px 0 0 0; }
+  .card::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; border-radius:0 0 14px 0; }
+  .title{ text-align:center; font-size:22px; letter-spacing:4px; color:var(--gold2); margin-bottom:6px; }
+  .subtitle{ text-align:center; font-size:12px; color:#8c7a5c; margin-bottom:28px; letter-spacing:2px; }
+  .field{ margin-bottom:18px; }
+  .field label{ display:block; font-size:13px; color:#b9a67e; margin-bottom:8px; letter-spacing:1px; }
+  .input{ width:100%; height:46px; background:rgba(0,0,0,.35); border:1px solid rgba(212,175,55,.25);
+    border-radius:8px; padding:0 14px; color:#f0e4c8; font-size:14px; outline:none; transition:.25s; }
+  .input:focus{ border-color:var(--gold); box-shadow:0 0 12px rgba(212,175,55,.25); }
+  .input::placeholder{ color:#6b5c44; }
+  .btn{ width:100%; height:48px; margin-top:10px; border:none; border-radius:8px; cursor:pointer;
+    font-size:16px; letter-spacing:6px; font-weight:700; color:#1a1206;
+    background:linear-gradient(90deg,#c99a2e,#f5d76e,#c99a2e);
+    box-shadow:0 6px 20px rgba(212,175,55,.3); transition:.25s; }
+  .btn:hover{ filter:brightness(1.12); box-shadow:0 8px 28px rgba(245,215,110,.45); transform:translateY(-1px); }
+  .foot{ margin-top:18px; text-align:center; font-size:13px; color:#9c8a68; }
+  .foot a{ color:var(--gold2); cursor:pointer; text-decoration:none; }
+  .foot a:hover{ text-decoration:underline; }
+  .msg{ min-height:18px; text-align:center; color:#ff7a5c; font-size:13px; margin-top:12px; }
+</style>
+</head>
+<body>
+  <div class="embers" id="embers"></div>
+  <div class="brand">
+    <h1>斗破苍穹</h1>
+    <p>三十年河东 · 三十年河西 · 莫欺少年穷</p>
+  </div>
+  <div class="wrap">
+    <div class="card">
+      <div class="title">异火图鉴 · 登录</div>
+      <div class="subtitle">DASAI FIRE ATLAS · WELCOME BACK</div>
+      <div class="field">
+        <label>用户名</label>
+        <input class="input" id="username" placeholder="请输入你的用户名">
+      </div>
+      <div class="field">
+        <label>密码</label>
+        <input class="input" id="password" type="password" placeholder="请输入密码">
+      </div>
+      <button class="btn" id="loginBtn">登 录</button>
+      <div class="msg" id="msg"></div>
+      <div class="foot">尚无账号？<a href="#">立即注册</a></div>
+    </div>
+  </div>
+  <script>
+    // 火焰粒子
+    const box=document.getElementById('embers');
+    for(let i=0;i<40;i++){
+      const e=document.createElement('div'); e.className='ember';
+      e.style.left=Math.random()*100+'%';
+      e.style.animationDuration=(5+Math.random()*8)+'s';
+      e.style.animationDelay=(Math.random()*8)+'s';
+      e.style.opacity=Math.random()*.7+.2;
+      box.appendChild(e);
+    }
+    document.getElementById('loginBtn').onclick=function(){
+      const u=document.getElementById('username').value.trim();
+      const p=document.getElementById('password').value.trim();
+      if(!u||!p){ document.getElementById('msg').textContent='请输入用户名和密码'; return; }
+      document.getElementById('msg').textContent='登录请求已提交（演示页）';
+    };
+  </script>
+</body>
+</html>
